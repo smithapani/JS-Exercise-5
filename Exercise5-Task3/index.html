@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel = "stylesheet" type="text/css" href="./style.css">
+<style>
+
+</style>
+</head>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      
+<h2>Firstbox</h2>
+<div class="square1" id="sq1">
+    <h4>Click me first!</h4>
+</div>
+
+<h2>Secondbox</h2>
+<div class="square2" id="sq2">
+    
+</div>
+
+<h2>Thirdbox</h2>
+<div class="square3" id="sq3" onclick="handleClick()">
+    
+</div>
+
+<h2>Fourthbox</h2>
+<div class="square4" id="sq4">
+    
+</div>
+
+<script>
+
+    const s1 = document.querySelector("#sq1"),
+    s2 = document.querySelector("#sq2"),
+    s3 = document.querySelector("#sq3"),
+    s4 = document.querySelector("#sq4");
+
+    let currentColor;
+    let prevColor;
+
+    const arr = ["green","red","blue"];
+
+    function pageLoad()
+    {
+            alert('Greetings!! Choose the box');
+    }
+    pageLoad(); 
+
+    $(document).ready(function(){
+        
+        currentColor = s4.style.backgroundColor;
+
+        setInterval(() => {
+            s2.style = `background-color : ${arr[Math.floor((Math.random() * 3))]}`;
+        },3000)
+
+        $(this).keydown(function(e) {
+            e.preventDefault();
+
+            setInterval(() => {
+                    if(e.key == "ArrowUp") { 
+                      s4.style = `background-color : ${arr[Math.floor((Math.random() * 3))]}`; 
+                        
+                    }
+
+                    prevColor = currentColor;
+                    //currentColor = "black";
+
+                    if(e.key == "ArrowDown"){
+                        $(s4).css({ backgroundColor: prevColor }); 
+                    }
+            },5000)
+            
+            console.log(e.key);
+        });
+
+    });
+
+
+    $("#sq1").click(function(){
+        s3.textContent = "Oops Something wrong!!!"
+    });
+
+
+
+</script>
+
+</body>
+</html> 

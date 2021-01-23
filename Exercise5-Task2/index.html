@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+    <table>
+        <tr>
+
+            <input type="text" id="search-item">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="employeeList">
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>   
+
+    let arr = [
+
+        {firstname:"smit",lastname:"hapani"},
+        {firstname:"vijay",lastname:"hapani"},
+        {firstname:"pooja",lastname:"abcd"},
+        {firstname:"keval",lastname:"gohil"},
+        {firstname:"manish",lastname:"bhati"},
+        {firstname:"mihir",lastname:"nakrani"},
+        {firstname:"sdds",lastname:"sdad"},
+        {firstname:"gjgj",lastname:"ghjgj"},
+        {firstname:"ghjgfh",lastname:"gyut"},
+        {firstname:"tzxv",lastname:"nvnmm"},
+        
+
+    ];
+
+    $(`#search-item`).on(`keyup`,function(){
+            let value = $(this).val();
+            console.log("Value : " +value);
+            var data = searchInGivenData(value,arr);
+            buildTable(data);
+    }) 
+
+    function searchInGivenData(value,data){
+
+        let filteredData = [];
+
+        for(let i=0;i<data.length;i++){
+            value = value.toLowerCase();
+
+            let name = data[i].firstname.toLowerCase();
+
+            if(name.includes(value)){
+                filteredData.push(data[i]);
+            }
+        }
+
+        return filteredData;
+    }
+
+    buildTable(arr);
+
+    function buildTable(arr){
+
+
+        let table = document.getElementById("employeeList");
+        table.innerHTML = "";
+
+        for(let i=0;i<arr.length;i++){
+            
+                    let row = `<tr>
+                        <td>${arr[i].firstname}</td>
+                        <td>${arr[i].lastname}</td>
+                </tr>`
+            table.innerHTML += row;          
+            
+        }
+
+    }
+
+
+
+    </script>
+
+</body>
+</html>
+
